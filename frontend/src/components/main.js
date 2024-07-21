@@ -28,8 +28,8 @@ const Main = () => {
     const now = new Date();
     let nextReset = new Date();
     nextReset = setHours(nextReset, 0); // 12 AM IST is 0 UTC+5:30
-    nextReset = setMinutes(nextReset, 7); // 12:07 AM IST
-    nextReset = setSeconds(nextReset, 0); // 12:07:00 AM IST
+    nextReset = setMinutes(nextReset, 40);
+    nextReset = setSeconds(nextReset, 0);
 
     // Convert next reset time to UTC
     nextReset = toDate(nextReset, "Asia/Kolkata");
@@ -144,7 +144,7 @@ const Main = () => {
           <h2 className="text-2xl text-[#ee5e5f] font-bold mb-14 pb-2 border-b border-[#eca74e4f] flex flex-col md:flex-row md:items-center md:justify-center">
             <span>Train Seat Booking System </span>
             <p>
-              Data reset At [12:07 A.M]{" "}
+              Data reset At [12:40 A.M]{" "}
               <span className="text-yellow-400">{timeRemaining}</span>
             </p>
           </h2>
