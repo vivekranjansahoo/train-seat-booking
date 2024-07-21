@@ -1,19 +1,72 @@
 import { useEffect, useState } from "react";
 import axios from "../utils/axios";
 import { toast } from "react-toastify";
-
+import {
+  format,
+  addDays,
+  setHours,
+  setMinutes,
+  setSeconds,
+  differenceInSeconds,
+} from "date-fns";
+import { toDate } from "date-fns-tz";
 import Header from "./Header";
 
 const Main = () => {
   const [trainData, setTrainData] = useState(null);
   const [numSeats, setNumSeats] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [timeRemaining, setTimeRemaining] = useState("");
 
   const toastFunctions = {
     success: toast.success,
     error: toast.error,
     info: toast.info,
   };
+
+  const getNextResetTime = () => {
+    const now = new Date();
+    let nextReset = new Date();
+    nextReset = setHours(nextReset, 0); // 12 AM IST is 0 UTC+5:30
+    nextReset = setMinutes(nextReset, 7); // 12:07 AM IST
+    nextReset = setSeconds(nextReset, 0); // 12:07:00 AM IST
+
+    // Convert next reset time to UTC
+    nextReset = toDate(nextReset, "Asia/Kolkata");
+
+    // If the time has already passed today, set it for tomorrow
+    if (now > nextReset) {
+      nextReset = addDays(nextReset, 1);
+    }
+
+    return nextReset;
+  };
+
+  const formatTimeRemaining = (seconds) => {
+    const hrs = Math.floor(seconds / 3600);
+    const mins = Math.floor((seconds % 3600) / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${String(hrs).padStart(2, "0")}:${String(mins).padStart(
+      2,
+      "0"
+    )}:${String(secs).padStart(2, "0")}`;
+  };
+
+  useEffect(() => {
+    const updateCountdown = () => {
+      const nextReset = getNextResetTime();
+      const now = new Date();
+      const timeDistanceInSeconds = differenceInSeconds(nextReset, now);
+      setTimeRemaining(formatTimeRemaining(timeDistanceInSeconds));
+    };
+
+    // Update countdown immediately and every second
+    updateCountdown();
+    const intervalId = setInterval(updateCountdown, 1000);
+
+    // Clear interval on component unmount
+    return () => clearInterval(intervalId);
+  }, []);
 
   useEffect(() => {
     const fetchTrainData = async () => {
@@ -90,6 +143,10 @@ const Main = () => {
         <div className="max-w-md mx-auto md:max-w-2xl text-center">
           <h2 className="text-2xl text-[#ee5e5f] font-bold mb-14 pb-2 border-b border-[#eca74e4f] flex flex-col md:flex-row md:items-center md:justify-center">
             <span>Train Seat Booking System </span>
+            <p>
+              Data reset At [12:07 A.M]{" "}
+              <span className="text-yellow-400">{timeRemaining}</span>
+            </p>
           </h2>
 
           <div className="md:flex">
