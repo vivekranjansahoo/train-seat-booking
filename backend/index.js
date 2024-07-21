@@ -21,11 +21,13 @@ const app = express();
 app.use(express.json());
 
 // Using CORS
-app.use(
-  cors({
-    origin: [process.env.API_URL, "http://localhost:3001"],
-  })
-);
+// app.use(
+//   cors({
+//     origin: [process.env.API_URL, "http://localhost:3001"],
+//   })
+// );
+
+app.use(cors());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
