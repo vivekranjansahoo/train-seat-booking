@@ -55,22 +55,29 @@ app.use("*", (req, res) => {
   res.status(404).json({ message: "Route not found" });
 });
 
-cron.schedule("7 0 * * *", () => {
-  console.log("Running seed.js file");
-  const seed = spawn("node", ["seed.js"]);
+cron.schedule(
+  "00 19 * * *",
+  () => {
+    console.log("Running seed.js file");
+    const seed = spawn("node", ["seed.js"]);
 
-  seed.stdout.on("data", (data) => {
-    console.log(`stdout: ${data}`);
-  });
+    seed.stdout.on("data", (data) => {
+      console.log(`stdout: ${data}`);
+    });
 
-  seed.stderr.on("data", (data) => {
-    console.error(`stderr: ${data}`);
-  });
+    seed.stderr.on("data", (data) => {
+      console.error(`stderr: ${data}`);
+    });
 
-  seed.on("close", (code) => {
-    console.log(`child process exited with code ${code}`);
-  });
-});
+    seed.on("close", (code) => {
+      console.log(`child process exited with code ${code}`);
+    });
+  },
+  {
+    scheduled: true,
+    timezone: "Asia/Kolkata", // Set timezone to IST
+  }
+);
 
 // Start the server
 const PORT = process.env.PORT || 5000;
