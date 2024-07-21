@@ -1,0 +1,14 @@
+.cont {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.hero__content h2 {
+  font-weight: 600;
+  line-height: 55px;
+}
+
+.hero__content {
+  padding-top: 50px;
+}
