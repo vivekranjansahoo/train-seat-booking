@@ -1,10 +1,12 @@
+
+
 # <div align="center">Train Booking</div>
 
-<div align="center">
-  <img src="https://i.imgur.com/o1JbekD.png" />
-</div>
-
 Train Booking is a MERN stack application that allows users to book seat for a train. The app includes an attractive UI and multiple features.
+
+## Project Live On
+
+<h3>Live link: http://train-seat-booking.netlify.app/</h3>
 
 ## Features
 
@@ -24,11 +26,8 @@ Train Booking is a MERN stack application that allows users to book seat for a t
 
 <br/>
 
-## Project Live On
 
-<a href="https://train-booking.netlify.app/">Netlify</a>
-<br/>
-[![Netlify Status](https://api.netlify.com/api/v1/badges/0ebb70ef-091a-4b93-8420-9c74c3173a76/deploy-status)](https://app.netlify.com/sites/train-booking/deploys)
+
 
 ## Technology Used
 
@@ -57,7 +56,7 @@ $ npm install
 Installs all the required packages for backend
 
 ```bash
-$ npm start
+$ npm run dev
 ```
 
 Starts the server using nodemon
@@ -84,46 +83,10 @@ Creates an optimized production build
 
 <br/>
 
-## Folder Structure
+## Screenshots
+  ![image](screenshots/train1.PNG)
+  ![image](screenshots/train2.PNG)
+  ![image](screenshots/train3.PNG)
+  ![image](screenshots/train4.PNG)
+  ![image](screenshots/train5.PNG)
 
-```
-train-booking/
-├── backend/
-│ ├── model/
-│ │ └── train.js
-│ ├── routes/
-│ │ └── train.js
-│ ├── seed.js
-│ └── server.js
-├── frontend/
-│ ├── public/
-│ │ ├── index.html
-│ │ └── manifest.json
-│ ├── src/
-│ │ ├── App.js
-│ │ ├── index.css
-│ │ └── index.js
-│ ├── .env
-│ └── tailwind.config.js
-├── .gitignore
-└── README.md
-```
-
-<br/>
-
-<div align="center">
-<img src="https://komarev.com/ghpvc/?username=itsvaibhavmishra&&style=flat-square" align="center" />
-</div>
-
-<br/>
-
-<div align="center">
-            <a href="https://www.buymeacoffee.com/vaibhawmishra" target="_blank" style="display: inline-block;">
-                <img
-                    src="https://img.shields.io/badge/Donate-Buy%20Me%20A%20Coffee-orange.svg?style=flat-square&logo=buymeacoffee" 
-                    align="center"
-                />
-            </a></div>
-<br />
-
----
