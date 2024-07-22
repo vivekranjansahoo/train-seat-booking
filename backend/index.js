@@ -56,7 +56,7 @@ app.use("*", (req, res) => {
 });
 
 cron.schedule(
-  "40 0 * * *",
+  "7 0 * * *",
   () => {
     console.log("Running seed.js file");
     const seed = spawn("node", ["seed.js"]);
